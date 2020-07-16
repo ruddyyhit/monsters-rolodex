@@ -1,8 +1,8 @@
 {
   "name": "monsters-rolodex",
   "version": "0.1.0",
+  "homepage": "http://ruddyyhit.github.io/monsters-rolodex",
   "private": true,
-  "homepage": "https://github.com/ruddyyhit/monsters-rolodex.git",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
