@@ -10,36 +10,54 @@ class App extends Component {
     this.state = {
       
       monsters: [],
-      searchField: ''
+      searchField: '',
+      title: ''
     };
+   // this.handleChange=this.handleChange.bind(this);
   }
-  componentDidMount(){
-    fetch('https://jsonplaceholder.typicode.com/users')
-    .then(response => response.json())
-    .then(users => this.setState({monsters:users}));
-  }
+    componentDidMount(){
+      fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(users => this.setState({monsters:users}));
+    }
+    onSearchChange = (event) => {
+      this.setState({
+        searchField: event.target.value,
+        title: event.target.value
+      });
+    };
+    handleChange =(e)=>{
+      this.setState({searchField:e.target.value})
+    }
 
     render() {
-      const { monsters, searchField } = this.state; // same as const monsters = this.state.monsters,const searchfield = this.state.searchField.
+      const { monsters, searchField, title } = this.state; 
+      // same as const monsters = this.state.monsters,const searchfield = this.state.searchField.
       const filterMonsters = monsters.filter(monster =>
         monster.name.toLowerCase().includes(searchField.toLowerCase())
-      )
-      return (
+      );
+
+    return (
         <div className="App">
-        <h1>Monsters Rolodex</h1>
-          <SearchBox
-          placeholder = 'search Monsters'
-            handleChange={e => {
-              this.setState({ searchField: e.target.value},
-                () => console.log(this.state))}
-              }
-          />
+        <h1> {title}</h1>
+          <SearchBox 
+          placeholder = " Search Monster"
+          handleChange={this.handleChange}
+           />
           <CardList monsters ={filterMonsters} />
         </div>         
       );
     }
   }
-
+  // coment(
+  //   placeholder = 'search Monsters',
+  //     handleChange={e => {
+  //       this.setState({ 
+  //         searchField: e.target.value, 
+  //         title: e.target.value},
+  //         () => console.log(this.state))}
+  //       }
+  //   )
 
 export default App;
 
